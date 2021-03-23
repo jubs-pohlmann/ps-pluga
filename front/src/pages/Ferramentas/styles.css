@@ -1,0 +1,57 @@
+.barra-pesquisa{
+    border-radius: 5px;
+    border: 1px solid #a8b8c0;
+    color: #3b4b56;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.icone{
+    margin-right: 0.5vw;
+}
+
+.ferramentas-container{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ferramentas-container div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* width: 15vw;
+    max-width: 170px; */
+    width: 170px;
+    margin: 2vh 2vw;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid #a8b8c0;
+}
+
+img{
+    height: 40%;
+}
+
+.ferramenta-nome{
+    /* background: rgba(250, 250, 250, 0.1); */
+    color: #434343;
+    border-radius: 5px;
+    mix-blend-mode: difference;
+    font: 500 .8em Inter, sans-serif;
+    /* transition: color .3s ease; */
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.paginacao{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 3vh;
+}
