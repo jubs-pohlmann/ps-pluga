@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Ferramentas from './pages/Ferramentas'
+import Ferramentas from './pages/ferramentas'
 
 export default function Routes() {
     return (

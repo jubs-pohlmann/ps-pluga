@@ -9,28 +9,28 @@
     color: #333333;
 }
 
-input, textarea {
+input {
     border: none;
     background-color: transparent;
     width: 100%;
 }
 
-button {
+button, a {
     cursor: pointer;
+    background: transparent;
 }
-
-/* form textarea {
-    width: 100%;
-    resize: vertical;
-    min-height: 140px;
-    height: 60px;
-    color: #333333;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    padding: 16px 24px;
-    line-height: 24px;
-} */
 
 .div-global{
   margin: 5vh 10vw;
+}
+
+.botao{   
+    text-decoration: none;
+    margin: 0 auto;
+    background: #27AAE1;
+    height: fit-content;
+    padding: 2px 15px;
+    border-radius: 20px;
+    border: none;
+    color: white;
 }
