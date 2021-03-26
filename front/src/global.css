@@ -20,6 +20,10 @@ button, a {
     background: transparent;
 }
 
+.display-none {
+    display: none;
+}
+
 .div-global{
   margin: 5vh 10vw;
 }
@@ -33,4 +37,13 @@ button, a {
     border-radius: 20px;
     border: none;
     color: white;
+}
+
+.animacao:not(:focus){
+    transition: 0.3s;
+}
+.animacao:not(:focus):hover{
+    border-color: #27AAE1;
+    box-shadow:  6px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1.01);
 }

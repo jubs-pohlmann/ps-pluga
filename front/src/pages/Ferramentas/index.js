@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import ContentJson from './ferramentas.json';
 import { BiSearch, BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 import FerramentaModal from '../../modals/ferramenta/index.js';
@@ -13,6 +13,8 @@ export default function Ferramentas(){
     const [ ferramentasTotal, setFerramentasTotal ] = useState( ContentJson );
     const [ ferramentas, setFerramentas ] = useState( ContentJson.slice( 0, ferramentasPorPagina ) );
     const [ ultimasFerramentasVistas, setUltimasFerramentasVistas ] = useState([]);
+    var existemFerramentas = ferramentas.length ? "" : "display-none";
+    var naoExistemFerramentas = ferramentas.length ? "display-none" : "";
 
     function paginar( pagina ){
         if( pagina > 0 ){
@@ -29,7 +31,7 @@ export default function Ferramentas(){
 
     function busca( e ){
         let termo = e.target.value.toUpperCase();
-        if( termo == '' ){
+        if( termo === '' ){
             setFerramentas( ContentJson.slice( 0, ferramentasPorPagina ) );
             setFerramentasTotal( ContentJson );
             setPaginaAtual( 1 );
@@ -48,39 +50,42 @@ export default function Ferramentas(){
 
     function fecharModal(){
         let temp = ultimasFerramentasVistas;
+
         if( !ultimasFerramentasVistas.includes( ferramentaSelecionada ) ){
-            if( ultimasFerramentasVistas.length == 3 ){
-                temp.unshift( ferramentaSelecionada );
-                temp.pop();
-                setUltimasFerramentasVistas( temp );
-            }
-            else{
-                temp.push( ferramentaSelecionada );
-                setUltimasFerramentasVistas(temp);
-            }
+            temp.unshift( ferramentaSelecionada );
+            if( ultimasFerramentasVistas.length >= 4 ) temp.pop();
+            setUltimasFerramentasVistas(temp);
         }
+        
         setModalAberto(false);
     }
 
     return(
         <div className="div-global">
+
             <div className="barra-pesquisa">
-                <BiSearch className="icone"/>
+                <BiSearch className="icone-busca"/>
                 <input id="ferramentaBusca" type="text" placeholder="Buscar ferramenta" onChange={(e) => busca(e)}/>
             </div>
+
             <FerramentaModal ultimasFerramentas={ ultimasFerramentasVistas } 
                              ferramenta={ ferramentaSelecionada } 
                              show={  modalAberto } 
                              handleClose={(e) => fecharModal(e)} />
-            <p>Mostrando { ferramentasPorPagina*( paginaAtual - 1 ) + 1 } - { ferramentasPorPagina*( paginaAtual - 1 ) + ferramentas.length } de { ferramentasTotal.length }</p> 
-            {/* todo mostrando de 1-0 de 0 */}
-            <div className="ferramentas-container">
+
+            <p className={existemFerramentas}>
+                Mostrando { ferramentasPorPagina*( paginaAtual - 1 ) + 1 } - { ferramentasPorPagina*( paginaAtual - 1 ) + ferramentas.length } de { ferramentasTotal.length }
+            </p> 
+            <p className={naoExistemFerramentas}>Não existem ferramentas com esse nome.</p>
+
+            <div className="ferramentas-container" >
                 { ferramentas.map( ( ferramenta, index ) => 
-                <button onClick={ (e) => abrirModal( ferramenta ) } key={index} style={{ background: ferramenta.color }}>
-                    <img src={ferramenta.icon} />
+                <button className="animacao" onClick={ (e) => abrirModal( ferramenta ) } key={index}>
+                    <img alt={"logo " + ferramenta.name} src={ferramenta.icon}  style={{ background: ferramenta.color }} />
                     <p className="ferramenta-nome">{ ferramenta.name }</p>
                 </button>) }
             </div>
+
             <div className="paginacao">
                 <button onClick={ (e) => paginar( paginaAtual - 1 ) }>
                     <BiLeftArrowAlt size="20px" className="icone-paginacao"/>
@@ -89,6 +94,7 @@ export default function Ferramentas(){
                     <BiRightArrowAlt size="20px" className="icone-paginacao"/>
                 </button>
             </div>
+
         </div>
     );
 }

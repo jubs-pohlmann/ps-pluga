@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import './styles.css';
 
 const FerramentaModal = ({ handleClose, show, ferramenta, ultimasFerramentas }) => {
@@ -9,10 +9,10 @@ const FerramentaModal = ({ handleClose, show, ferramenta, ultimasFerramentas }) 
         <div className={mostrarEsconderModal}>
             <section className="modal-main" >
                 <div className="ferramenta-selecionada">
-                    <img src={ferramenta.icon} style={{ background: ferramenta.color }} />
+                    <img alt={"logo " + ferramenta.name} src={ferramenta.icon} style={{ background: ferramenta.color }} />
                     <div>
                         <p>{ferramenta.name}</p>
-                        <a className="botao" target="_blank" href={ferramenta.link}>Acessar</a>
+                        <a className="botao" rel="noreferrer" target="_blank" href={ferramenta.link}>Acessar</a>
                     </div>
                 </div>
 
@@ -20,10 +20,10 @@ const FerramentaModal = ({ handleClose, show, ferramenta, ultimasFerramentas }) 
 
                 <div className="ultimas-ferramentas-container">
                     { ultimasFerramentas.map( ( ultimaFerramenta, index ) => 
-                    <button className="ultima-ferramenta" key={index}>
-                        <img style={{ background: ultimaFerramenta.color }} src={ultimaFerramenta.icon} />
-                        <p className="ferramenta-nome">{ ultimaFerramenta.name }</p>
-                    </button>)}
+                    <div className="ultima-ferramenta" key={index}>
+                        <img alt={"logo " + ultimaFerramenta.name} style={{ background: ultimaFerramenta.color }} src={ultimaFerramenta.icon} />
+                        <p>{ ultimaFerramenta.name }</p>
+                    </div>)}
                 </div> 
                 <a className="botao botao-sair" onClick={handleClose}> Fechar </a>
             </section>           
