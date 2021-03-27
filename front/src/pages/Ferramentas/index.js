@@ -45,7 +45,7 @@ export default function Ferramentas(){
 
     function abrirModal( ferramenta ){
         setFerramentaSelecionada( ferramenta );
-        setModalAberto(true);
+        setModalAberto( true );
     }
 
     function fecharModal(){
@@ -54,10 +54,10 @@ export default function Ferramentas(){
         if( !ultimasFerramentasVistas.includes( ferramentaSelecionada ) ){
             temp.unshift( ferramentaSelecionada );
             if( ultimasFerramentasVistas.length >= 4 ) temp.pop();
-            setUltimasFerramentasVistas(temp);
+            setUltimasFerramentasVistas( temp );
         }
         
-        setModalAberto(false);
+        setModalAberto( false );
     }
 
     return(
@@ -65,13 +65,13 @@ export default function Ferramentas(){
 
             <div className="barra-pesquisa">
                 <BiSearch className="icone-busca"/>
-                <input id="ferramentaBusca" type="text" placeholder="Buscar ferramenta" onChange={(e) => busca(e)}/>
+                <input id="ferramentaBusca" type="text" placeholder="Buscar ferramenta" onChange={( e ) => busca( e )}/>
             </div>
 
             <FerramentaModal ultimasFerramentas={ ultimasFerramentasVistas } 
                              ferramenta={ ferramentaSelecionada } 
                              show={  modalAberto } 
-                             handleClose={(e) => fecharModal(e)} />
+                             fecharModal={ ( e ) => fecharModal( e ) } />
 
             <p className={existemFerramentas}>
                 Mostrando { ferramentasPorPagina*( paginaAtual - 1 ) + 1 } - { ferramentasPorPagina*( paginaAtual - 1 ) + ferramentas.length } de { ferramentasTotal.length }
@@ -80,17 +80,17 @@ export default function Ferramentas(){
 
             <div className="ferramentas-container" >
                 { ferramentas.map( ( ferramenta, index ) => 
-                <button className="animacao" onClick={ (e) => abrirModal( ferramenta ) } key={index}>
+                <button className="animacao" onClick={ ( e ) => abrirModal( ferramenta ) } key={index}>
                     <img alt={"logo " + ferramenta.name} src={ferramenta.icon}  style={{ background: ferramenta.color }} />
                     <p className="ferramenta-nome">{ ferramenta.name }</p>
                 </button>) }
             </div>
 
             <div className="paginacao">
-                <button onClick={ (e) => paginar( paginaAtual - 1 ) }>
+                <button onClick={ ( e ) => paginar( paginaAtual - 1 ) }>
                     <BiLeftArrowAlt size="20px" className="icone-paginacao"/>
                 </button>
-                <button onClick={ (e) => paginar( paginaAtual + 1 ) }>
+                <button onClick={ ( e ) => paginar( paginaAtual + 1 ) }>
                     <BiRightArrowAlt size="20px" className="icone-paginacao"/>
                 </button>
             </div>

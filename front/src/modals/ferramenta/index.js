@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const FerramentaModal = ({ handleClose, show, ferramenta, ultimasFerramentas }) => {
+const FerramentaModal = ({ fecharModal, show, ferramenta, ultimasFerramentas }) => {
     const mostrarEsconderModal = show ? "modal display-block" : "modal display-none";
     const mostrarEsconderUltimasFerramentas = ultimasFerramentas.length ? "" : "display-none";
 
@@ -21,11 +21,11 @@ const FerramentaModal = ({ handleClose, show, ferramenta, ultimasFerramentas }) 
                 <div className="ultimas-ferramentas-container">
                     { ultimasFerramentas.map( ( ultimaFerramenta, index ) => 
                     <div className="ultima-ferramenta" key={index}>
-                        <img alt={"logo " + ultimaFerramenta.name} style={{ background: ultimaFerramenta.color }} src={ultimaFerramenta.icon} />
+                        <img alt={"logo " + ultimaFerramenta.name} style={{ background: ultimaFerramenta.color }} src={ ultimaFerramenta.icon } />
                         <p>{ ultimaFerramenta.name }</p>
                     </div>)}
                 </div> 
-                <a className="botao botao-sair" onClick={handleClose}> Fechar </a>
+                <a className="botao botao-sair" onClick={ fecharModal }>Fechar</a>
             </section>           
         </div>
     );
